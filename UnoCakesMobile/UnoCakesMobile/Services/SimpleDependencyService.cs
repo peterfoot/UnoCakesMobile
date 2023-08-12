@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace UnoCakesMobile.Services
 {
+    /// <summary>
+    /// A simplified port of the Xamarin.Forms DependencyService
+    /// </summary>
     public static class DependencyService
     {
         static readonly object s_dependencyLock = new object();
@@ -22,6 +25,12 @@ namespace UnoCakesMobile.Services
             return result ?? Get<T>(fallbackFetchTarget);
         }
 
+        /// <summary>
+        /// Returns the platform-specific implementation of type T.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fetchTarget"></param>
+        /// <returns></returns>
         public static T Get<T>(DependencyFetchTarget fetchTarget = DependencyFetchTarget.GlobalInstance) where T : class
         {
             DependencyData dependencyImplementation;
@@ -55,6 +64,10 @@ namespace UnoCakesMobile.Services
             return (T)Activator.CreateInstance(dependencyImplementation.ImplementorType);
         }
 
+        /// <summary>
+        /// Registers the platform-specific implementation of type T.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         public static void Register<T>() where T : class
         {
             Type type = typeof(T);
@@ -62,6 +75,11 @@ namespace UnoCakesMobile.Services
                 DependencyTypes.Add(type);
         }
 
+        /// <summary>
+        /// Registers the platform-specific implementation of type T.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TImpl"></typeparam>
         public static void Register<T, TImpl>() where T : class where TImpl : class, T
         {
             Type targetType = typeof(T);
