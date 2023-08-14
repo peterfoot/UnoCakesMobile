@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UnoCakesMobile.Services;
+using UnoCakesMobile.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -22,14 +24,12 @@ namespace UnoCakesMobile.Views
     /// </summary>
     public sealed partial class CakeList : Page
     {
+        public CakeListViewModel ViewModel { get; private set; }
+
         public CakeList()
         {
             this.InitializeComponent();
-        }
-
-        private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(CakeDetails), 0);
+            ViewModel = DependencyService.Get<CakeListViewModel>();
         }
     }
 }

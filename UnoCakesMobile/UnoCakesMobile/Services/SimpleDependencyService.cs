@@ -55,13 +55,66 @@ namespace UnoCakesMobile.Services
                     {
                         if (dependencyImplementation.GlobalInstance == null)
                         {
-                            dependencyImplementation.GlobalInstance = Activator.CreateInstance(dependencyImplementation.ImplementorType);
+                            dependencyImplementation.GlobalInstance = ActivateWithParameters(dependencyImplementation.ImplementorType);
                         }
                     }
                 }
                 return (T)dependencyImplementation.GlobalInstance;
             }
-            return (T)Activator.CreateInstance(dependencyImplementation.ImplementorType);
+
+            return (T)ActivateWithParameters(dependencyImplementation.ImplementorType);
+        }
+
+        private static object ActivateWithParameters(Type implementorType)
+        {
+            // resolve constructor parameters
+            List<object> parameters = new List<object>();
+            var ci = implementorType.GetConstructors().FirstOrDefault();
+            foreach (var pt in ci.GetParameters())
+            {
+                parameters.Add(Get(pt.ParameterType));
+            }
+            return Activator.CreateInstance(implementorType, parameters.ToArray());
+        }
+
+        internal static object Get(Type targetType, DependencyFetchTarget fetchTarget = DependencyFetchTarget.GlobalInstance)
+        {
+            DependencyData dependencyImplementation;
+            lock (s_dependencyLock)
+            {
+                if (!DependencyImplementations.TryGetValue(targetType, out dependencyImplementation))
+                {
+                    Type implementor = FindImplementor(targetType);
+                    DependencyImplementations[targetType] = (dependencyImplementation = implementor != null ? new DependencyData { ImplementorType = implementor } : null);
+                }
+            }
+
+            if (dependencyImplementation == null)
+                return null;
+
+            if (fetchTarget == DependencyFetchTarget.GlobalInstance)
+            {
+                if (dependencyImplementation.GlobalInstance == null)
+                {
+                    lock (dependencyImplementation)
+                    {
+                        if (dependencyImplementation.GlobalInstance == null)
+                        {
+                            dependencyImplementation.GlobalInstance = Activator.CreateInstance(dependencyImplementation.ImplementorType);
+                        }
+                    }
+                }
+                return dependencyImplementation.GlobalInstance;
+            }
+
+            // resolve constructor parameters
+            List<object> parameters = new List<object>();
+            var ci = dependencyImplementation.ImplementorType.GetConstructors().FirstOrDefault();
+            foreach (var pt in ci.GetParameters())
+            {
+                parameters.Add(Get(pt.ParameterType));
+            }
+            return Activator.CreateInstance(dependencyImplementation.ImplementorType, parameters);
         }
 
         /// <summary>

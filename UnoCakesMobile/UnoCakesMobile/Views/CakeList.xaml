@@ -154,7 +154,7 @@
                 </StackPanel>
                 
                 <StackPanel Orientation="Vertical" Spacing="28" Grid.Column="1">
-                    <Grid Tapped="Grid_Tapped">
+                    <Grid Tapped="{x:Bind ViewModel.ShowCake}">
                         <Rectangle MinHeight="210" />
                         <Image
                             Margin="8,-2,8,8"

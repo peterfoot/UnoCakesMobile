@@ -1,4 +1,5 @@
 using UnoCakesMobile.Services;
+using UnoCakesMobile.ViewModels;
 using UnoCakesMobile.Views;
 
 namespace UnoCakesMobile
@@ -27,6 +28,7 @@ namespace UnoCakesMobile
 
                 // Register service for frame navigation (so we can navigate from View Models)
                 DependencyService.RegisterSingleton<INavigationService>(new NavigationService(rootFrame));
+                DependencyService.Register<CakeListViewModel>();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
             }

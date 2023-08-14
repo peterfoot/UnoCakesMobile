@@ -8,6 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" />
 		<PackageReference Include="Uno.WinUI" />
 		<PackageReference Include="Uno.Resizetizer" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" />
@@ -60,10 +61,6 @@
 	  <UpToDateCheckInput Remove="Views\CakeDetails.xaml" />
 	  <UpToDateCheckInput Remove="Views\CakeList.xaml" />
 	  <UpToDateCheckInput Remove="Views\StartPage.xaml" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="ViewModels\" />
 	</ItemGroup>
 
 	<ItemGroup>
