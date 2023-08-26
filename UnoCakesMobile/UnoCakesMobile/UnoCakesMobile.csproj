@@ -9,6 +9,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" />
+		<PackageReference Include="InTheHand.DependencyInjection" />
 		<PackageReference Include="Uno.WinUI" />
 		<PackageReference Include="Uno.Resizetizer" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" />

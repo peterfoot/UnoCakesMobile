@@ -34,6 +34,7 @@
                     Margin="0,16,0,0"
                     HorizontalAlignment="Center"
                 Stretch="UniformToFill"
+                MaxWidth="280"
                     Source="ms-appx:///UnoCakesMobile/Assets/item2large.png" />
             <Image
                     Margin="0,-14,0,24"

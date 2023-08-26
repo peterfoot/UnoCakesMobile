@@ -97,6 +97,7 @@
                             Stretch="UniformToFill"
                             Margin="8"
                             Source="ms-appx:///UnoCakesMobile/Assets/item1.png"
+                            MaxWidth="240"
                             VerticalAlignment="Top" />
                         <Grid VerticalAlignment="Bottom" Margin="20,32,20,16" RowDefinitions="*,*,*">
                             <TextBlock
@@ -126,6 +127,7 @@
                             Stretch="UniformToFill"
                             Margin="8"
                             Source="ms-appx:///UnoCakesMobile/Assets/item3.png"
+                            MaxWidth="240"
                             VerticalAlignment="Top" />
                         <Grid
                             Margin="20,32,20,16"
@@ -160,6 +162,7 @@
                             Margin="8,-2,8,8"
                         Stretch="UniformToFill"
                             Source="ms-appx:///UnoCakesMobile/Assets/item2.png"
+                            MaxWidth="240"
                             VerticalAlignment="Top" />
                         <Grid
                             Margin="20,32,20,16"
@@ -192,6 +195,7 @@
                             Grid.Row="1"
                             Margin="8,-4,8,8"
                             Source="ms-appx:///UnoCakesMobile/Assets/item4.png"
+                                MaxWidth="240"
                             VerticalAlignment="Top" />
                             <Grid
                             Grid.Row="1"

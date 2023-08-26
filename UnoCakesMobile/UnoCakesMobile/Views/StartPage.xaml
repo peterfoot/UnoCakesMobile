@@ -8,8 +8,8 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid IsTapEnabled="True"  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  Tapped="Grid_Tapped">
-        <Image Stretch="UniformToFill" Source="ms-appx:///UnoCakesMobile/Assets/cake_bg.png" />
+    <Grid IsTapEnabled="True"  Background="#5CAC87"  Tapped="Grid_Tapped">
+        <Image Stretch="UniformToFill" Source="ms-appx:///UnoCakesMobile/Assets/cake_bg.png" MaxWidth="360" />
         <Rectangle
                 Margin="0,0,-20,-20"
                 Fill="#b81f1c"
