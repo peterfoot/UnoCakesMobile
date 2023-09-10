@@ -18,12 +18,30 @@ namespace UnoCakesMobile.Services
 
         public void GoBack()
         {
-            _frame.GoBack();
+            if (_frame.DispatcherQueue.HasThreadAccess)
+                _frame.GoBack();
+            else
+                _frame.DispatcherQueue.TryEnqueue(_frame.GoBack);
         }
 
         public bool Navigate(Type sourcePageType, object parameter = null)
         {
-            return _frame.Navigate(sourcePageType, parameter);
+            if (_frame.DispatcherQueue.HasThreadAccess)
+                return _frame.Navigate(sourcePageType, parameter);
+            else
+            {
+                bool success = false;
+                ManualResetEvent mre = new ManualResetEvent(false);
+                _frame.DispatcherQueue.TryEnqueue(() =>
+                {
+                    success = _frame.Navigate(sourcePageType, parameter);
+                    mre.Set();
+                });
+
+                // wait for completion on UI thread and return result
+                mre.WaitOne();
+                return success;
+            }
         }
     }
 }
