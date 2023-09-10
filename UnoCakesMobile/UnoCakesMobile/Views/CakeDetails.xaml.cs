@@ -27,6 +27,12 @@ namespace UnoCakesMobile.Views
             this.InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine(e.Parameter);
+
+            base.OnNavigatedTo(e);
+        }
         private void Back_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Frame.GoBack();
