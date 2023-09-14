@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml.Media.Animation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,17 +25,17 @@ namespace UnoCakesMobile.Services
                 _frame.DispatcherQueue.TryEnqueue(_frame.GoBack);
         }
 
-        public bool Navigate(Type sourcePageType, object parameter = null)
+        public bool Navigate(Type sourcePageType, object parameter = null, NavigationTransitionInfo transition = null)
         {
             if (_frame.DispatcherQueue.HasThreadAccess)
-                return _frame.Navigate(sourcePageType, parameter);
+                return _frame.Navigate(sourcePageType, parameter, transition);
             else
             {
                 bool success = false;
                 ManualResetEvent mre = new ManualResetEvent(false);
                 _frame.DispatcherQueue.TryEnqueue(() =>
                 {
-                    success = _frame.Navigate(sourcePageType, parameter);
+                    success = _frame.Navigate(sourcePageType, parameter, transition);
                     mre.Set();
                 });
 

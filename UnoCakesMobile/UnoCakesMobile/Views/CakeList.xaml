@@ -105,7 +105,7 @@
                                 FontWeight="Bold"
                                 FontSize="13"
                                 Style="{StaticResource ExBoldTextBlock}"
-                                Text="Cold Coffee" />
+                                Text="Iced Coffee" />
                             <TextBlock
                                 Grid.Row="1"
                                 FontSize="10"
@@ -116,7 +116,7 @@
                                 FontWeight="Bold"
                                 FontSize="13"
                                 Style="{StaticResource ExBoldTextBlock}"
-                                Text="$24.00" />
+                                Text="$8.00" />
                             <FontIcon FontFamily="Segoe Fluent Icons" FontSize="16"  Glyph="&#xEB51;" Grid.Row="2" HorizontalAlignment="Right"/>
                         </Grid>
                     </Grid>
@@ -184,7 +184,7 @@
                                 FontWeight="Bold"
                                 FontSize="13"
                                 Style="{StaticResource ExBoldTextBlock}"
-                                Text="$65.00" />
+                                Text="$15.00" />
                             <FontIcon FontFamily="Segoe Fluent Icons" FontSize="16"  Glyph="&#xEB51;" Grid.Row="2" HorizontalAlignment="Right"/>
                         </Grid>
                     </Grid>
@@ -218,7 +218,7 @@
                                 FontWeight="Bold"
                                 FontSize="13"
                                 Style="{StaticResource ExBoldTextBlock}"
-                                Text="$30.00" />
+                                Text="$6.00" />
                             <FontIcon FontFamily="Segoe Fluent Icons" FontSize="16"  Glyph="&#xEB51;" Grid.Row="2" HorizontalAlignment="Right"/>
                         </Grid>
                         </Grid>

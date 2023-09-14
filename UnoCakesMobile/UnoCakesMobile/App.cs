@@ -1,4 +1,5 @@
 using InTheHand.DependencyInjection;
+using System.Diagnostics;
 using UnoCakesMobile.Services;
 using UnoCakesMobile.ViewModels;
 using UnoCakesMobile.Views;
@@ -8,6 +9,13 @@ namespace UnoCakesMobile
     public class App : Application
     {
         protected Window? MainWindow { get; private set; }
+
+        public App()
+        {
+#if __IOS__ || __ANDROID__
+    Uno.UI.FeatureConfiguration.Style.ConfigureNativeFrameNavigation();
+#endif
+        }
 
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
@@ -32,6 +40,7 @@ namespace UnoCakesMobile
                 DependencyService.Register<CakeListViewModel>();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
+                rootFrame.Navigated += RootFrame_Navigated;
             }
 
             if (rootFrame.Content == null)
@@ -44,6 +53,11 @@ namespace UnoCakesMobile
 
             // Ensure the current window is active
             MainWindow.Activate();
+        }
+
+        private void RootFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            Debug.WriteLine($"{e.NavigationMode} {e.SourcePageType} {e.Parameter} {e.NavigationTransitionInfo}");
         }
 
         /// <summary>

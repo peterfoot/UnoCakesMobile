@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml.Media.Animation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,6 @@ namespace UnoCakesMobile.Services
 
         void GoBack();
 
-        bool Navigate(Type sourcePageType, object parameter = null);
+        bool Navigate(Type sourcePageType, object parameter = null, NavigationTransitionInfo transition = null);
     }
 }

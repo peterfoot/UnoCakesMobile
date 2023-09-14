@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Media.Animation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace UnoCakesMobile.ViewModels
 
         public void ShowCake()
         {
-            _navigationService.Navigate(typeof(CakeDetails));
+            _navigationService.Navigate(typeof(CakeDetails), null, new DrillInNavigationTransitionInfo());
         }
     }
 }
