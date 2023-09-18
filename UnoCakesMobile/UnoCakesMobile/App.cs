@@ -13,7 +13,7 @@ namespace UnoCakesMobile
         public App()
         {
 #if __IOS__ || __ANDROID__
-    Uno.UI.FeatureConfiguration.Style.ConfigureNativeFrameNavigation();
+           Uno.UI.FeatureConfiguration.Style.ConfigureNativeFrameNavigation();
 #endif
         }
 
@@ -53,11 +53,47 @@ namespace UnoCakesMobile
 
             // Ensure the current window is active
             MainWindow.Activate();
+
+            ConfigureNavigation();
         }
 
         private void RootFrame_Navigated(object sender, NavigationEventArgs e)
         {
             Debug.WriteLine($"{e.NavigationMode} {e.SourcePageType} {e.Parameter} {e.NavigationTransitionInfo}");
+        }
+
+        private void ConfigureNavigation()
+        {
+            var frame = (Frame)Microsoft.UI.Xaml.Window.Current.Content;
+            var manager = Windows.UI.Core.SystemNavigationManager.GetForCurrentView();
+
+
+#if WINDOWS_UWP || __WASM__
+    // Toggle the visibility of back button based on if the frame can navigate back.
+    // Setting it to visible has the follow effect on the platform:
+    // - uwp: add a `<-` back button on the title bar
+    // - wasm: add a dummy entry in the browser back stack
+    frame.Navigated += (s, e) => manager.AppViewBackButtonVisibility = frame.CanGoBack
+        ? Windows.UI.Core.AppViewBackButtonVisibility.Visible
+        : Windows.UI.Core.AppViewBackButtonVisibility.Collapsed;
+#endif
+
+#if WINDOWS_UWP || __ANDROID__ || __WASM__
+    // On some platforms, the back navigation request needs to be hooked up to the back navigation of the Frame.
+    // These requests can come from:
+    // - uwp: title bar back button
+    // - droid: CommandBar back button, os back button/gesture
+    // - wasm: browser back button
+    manager.BackRequested += (s, e) =>
+    {
+        if (frame.CanGoBack)
+        {
+            frame.GoBack();
+
+            e.Handled = true;
+        }
+    };
+#endif
         }
 
         /// <summary>

@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid IsTapEnabled="True"  Background="#5CAC87"  Tapped="Grid_Tapped">
-        <Image Stretch="UniformToFill" Source="ms-appx:///UnoCakesMobile/Assets/cake_bg.png" MaxWidth="360" />
+        <Image Source="ms-appx:///UnoCakesMobile/Assets/cake_bg.png" MaxWidth="360" />
         <Rectangle
                 Margin="0,0,-20,-20"
                 Fill="#b81f1c"
@@ -20,10 +20,5 @@
                 VerticalAlignment="Bottom"
                 Width="80" />
         <SymbolIcon Symbol="Forward" Margin="16" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-
-        <TextBlock
-                FontSize="20"
-                Text="&gt;"
-                Foreground="White" />
     </Grid>
 </Page>

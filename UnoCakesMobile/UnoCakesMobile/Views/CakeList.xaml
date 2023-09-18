@@ -94,7 +94,6 @@
                     <Grid>
                         <Rectangle MinHeight="248"/>
                         <Image
-                            Stretch="UniformToFill"
                             Margin="8"
                             Source="ms-appx:///UnoCakesMobile/Assets/item1.png"
                             MaxWidth="240"
@@ -124,7 +123,6 @@
                     <Grid>
                         <Rectangle MinHeight="248" />
                         <Image
-                            Stretch="UniformToFill"
                             Margin="8"
                             Source="ms-appx:///UnoCakesMobile/Assets/item3.png"
                             MaxWidth="240"
@@ -160,7 +158,6 @@
                         <Rectangle MinHeight="210" />
                         <Image
                             Margin="8,-2,8,8"
-                        Stretch="UniformToFill"
                             Source="ms-appx:///UnoCakesMobile/Assets/item2.png"
                             MaxWidth="240"
                             VerticalAlignment="Top" />
